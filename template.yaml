@@ -7,8 +7,8 @@ Description: >
 
 
 Resources:
-  HelloWorldFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+  CreateMovieFunction:
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: MoviesFunction
       Handler: edu.uchicago.gerber.movies.CreateMovieLambda::handleRequest
@@ -21,5 +21,18 @@ Resources:
           Properties:
             Path: /movies
             Method: POST
-
+  ReadMoviesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: MoviesFunction
+      Handler: edu.uchicago.gerber.movies.ReadMoviesLambda::handleRequest
+      Runtime: java11
+      MemorySize: 512
+      Timeout: 20
+      Events:
+        PostMovie:
+          Type: Api
+          Properties:
+            Path: /movies
+            Method: GET
 
