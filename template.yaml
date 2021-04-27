@@ -27,6 +27,9 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: MoviesFunction
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MoviesTable
       Handler: edu.uchicago.gerber.movies.CreateMovieLambda::handleRequest
       Events:
         PostMovie:
@@ -38,6 +41,9 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: MoviesFunction
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MoviesTable
       Handler: edu.uchicago.gerber.movies.ReadMoviesLambda::handleRequest
       Events:
         PostMovie:

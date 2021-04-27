@@ -37,9 +37,6 @@ public class ReadMoviesLambda {
                 .collect(Collectors.toList());
                 //collect to a List
 
-        //simulate reading form db
-//        Movie movie = new Movie("8676787787d-7384ef-347884787ebac", "American Beauty", 1999 );
-
         return new APIGatewayProxyResponseEvent().withStatusCode(200).withBody(objectMapper.writeValueAsString(movies));
 
     }
