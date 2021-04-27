@@ -21,7 +21,7 @@ public class CreateMovieLambda {
 
       Table moviesTable = dynamoDB.getTable(System.getenv("MOVIES_TABLE"));
 
-      Movie movie = new Movie("84884efc-74788483ce-77834876", "Avatar", 2010);
+      Movie movie = objectMapper.readValue(requestEvent.getBody(), Movie.class);
       Item item = new Item()
               .withPrimaryKey("id", movie.getId())
               .withString("title", movie.getTitle())
