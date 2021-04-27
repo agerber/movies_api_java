@@ -10,9 +10,19 @@ Globals:
     Runtime: java11
     MemorySize: 512
     Timeout: 20
+    Environment:
+      Variables:
+        MOVIES_TABLE: !Ref MoviesTable
 
 
 Resources:
+  MoviesTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+
   CreateMovieFunction:
     Type: AWS::Serverless::Function
     Properties:
